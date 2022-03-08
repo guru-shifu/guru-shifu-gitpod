@@ -1,0 +1,19 @@
+tasks:
+  - before: clear && echo 'Setting up guru shifu. This may take around 5 minutes...'
+    init: ./.ignore/init.sh
+    command: ./.ignore/start.sh  >> .ignore/log.txt && cat .ignore/banner.txt
+
+ports:
+  - port: 3000
+    onOpen: notify
+    visibility: public
+  - port: 8080
+    onOpen: ignore
+    visibility: public
+
+vscode:
+  extensions:
+    - redhat.java
+    - k--kato.intellij-idea-keybindings
+    - vscjava.vscode-java-test
+    - vscjava.vscode-java-debug
