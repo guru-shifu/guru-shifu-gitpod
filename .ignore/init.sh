@@ -51,6 +51,8 @@ while [ $HTTP_RESPONSE != "200" ]; do
 done
 
 echo -e "\e[1;32m------------User Authenticated...--------------------\e[0m"
+echo ""
+echo "Setting up guru shifu. This may take around 5 minutes..."
 IDTOKEN=$(cat response.txt | jq -r .AuthenticationResult.IdToken)
 
 HTTP_RESPONSE=$(curl -s -o signedurl.txt -w "%{http_code}" -H "Authorization: $IDTOKEN" $GATEWAY_ENDPOINT)
