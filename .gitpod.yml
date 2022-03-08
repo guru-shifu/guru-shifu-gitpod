@@ -1,5 +1,5 @@
 tasks:
-  - before: clear && echo 'Setting up guru shifu. This may take around 5 minutes...'
+  - before: clear && echo 'Welcome to GuruShifu...'
     init: ./.ignore/init.sh
     command: ./.ignore/start.sh  >> .ignore/log.txt && cat .ignore/banner.txt
 
