@@ -82,30 +82,30 @@ tar -xf guru-shifu.tar.gz
 echo "$(timestamp) Unzip complete" >> initializationlog.txt
 
 echo "Docker build for fly way migrate"  >> initializationlog.txt
-docker build -q -t guru-shifu-db-migrations -f Dockerfile-flyway .
+docker build -t guru-shifu-db-migrations -f Dockerfile-flyway . >> initializationlog.txt
 echo "docker flyway build done..." >> initializationlog.txt
 
 source guru-shifu-env-variables.txt 
 
 echo "Building the backend image..." >> initializationlog.txt
-docker build -q -t  guru-shifu-api \
+docker build -t  guru-shifu-api \
   --build-arg REMOTE_URL=$REMOTE_URL \
   --build-arg ENABLE_JAR_REQUIREMENT=$ENABLE_JAR_REQUIREMENT \
   --build-arg REMOTE_USERPOOL_URL=$REMOTE_USERPOOL_URL \
   --build-arg USER_ID=$USER_ID \
   --build-arg USER_NAME=$USER_NAME \
   --build-arg HOME_DIR=$HOME_DIR \
-  --build-arg GURU_SHIFU_VERSION=$GURU_SHIFU_VERSION -f Dockerfile-api .
+  --build-arg GURU_SHIFU_VERSION=$GURU_SHIFU_VERSION -f Dockerfile-api . >> initializationlog.txt
 
 echo "Backend image done" >> initializationlog.txt
 
 echo "Building the frontend image...." >> initializationlog.txt
-docker build -q -t guru-shifu-ui \
+docker build -t guru-shifu-ui \
   --build-arg GURU_SHIFU_VERSION=$GURU_SHIFU_VERSION \
   --build-arg ENABLE_JAR_REQUIREMENT=$ENABLE_JAR_REQUIREMENT \
   --build-arg CLIENT_ID=$CLIENT_ID --build-arg REMOTE_BATCHLIST_URL=$REMOTE_URL \
   --build-arg ENABLE_SIGNUP_FLOW=$ENABLE_SIGNUP_FLOW \
-  --build-arg TARGET_ENV=${TARGET_ENV:="local"} -f Dockerfile-ui .
+  --build-arg TARGET_ENV=${TARGET_ENV:="local"} -f Dockerfile-ui . >> initializationlog.txt
 
 echo "Frontend Image done" >> initializationlog.txt
 
