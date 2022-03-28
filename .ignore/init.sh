@@ -3,11 +3,13 @@
 timestamp(){
     date
 }
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+cd $DIR
+
 touch initializationlog.txt
 
 echo "$(timestamp) Locating required resources..." >> initializationlog.txt
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-cd $DIR
 
 IDTOKEN=null
 GATEWAY_ENDPOINT=null
@@ -69,7 +71,6 @@ rm response.txt
 rm signedurl.txt
 
 echo "Artifact url obtained....." >> initializationlog.txt 
-echo ""
 echo -e "\e[1;34m $(timestamp) --------- Downloading the artifacts ... --------------\e[0m"
 curl  --output guru-shifu.tar.gz "$ARTIFACT_URL"
 echo "$(timestamp) Artifact download complete." >> initializationlog.txt
