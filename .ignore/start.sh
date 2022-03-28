@@ -13,7 +13,7 @@ docker-compose -f docker-compose-gitpod.yml up -d --quiet-pull
 echo "$(timestamp) Docker compose completed." >> initializationlog.txt
 if [ $? == 0 ]
 then
-  echo "\e[1;34m $(timestamp) Waiting for guru-shifu to start up.... \e[0m"
+  echo -e "\e[1;34m $(timestamp) Waiting for guru-shifu to start up.... \e[0m"
   echo "$(timestamp) Waiting for guru-shifu to start up.... " >> initializationlog.txt
   until $(curl --output /dev/null --silent --head --fail http://localhost:8080/rectangle/feedback-history/); do
     printf "."  >> initializationlog.txt
