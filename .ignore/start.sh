@@ -8,23 +8,22 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $DIR
 touch .env
 echo "REACT_APP_HOST_URL=https://8080-${GITPOD_WORKSPACE_URL#*//}" > .env
-echo "$(timestamp) Starting guru-shifu..."
-echo "$(timestamp) Running docker-compose up in detach mode.."
+echo "$(timestamp) Running docker-compose up in detach mode.." >> initializationlog.txt
 docker-compose -f docker-compose-gitpod.yml up -d --quiet-pull
-echo "$(timestamp) Docker compose completed."
+echo "$(timestamp) Docker compose completed." >> initializationlog.txt
 if [ $? == 0 ]
 then
   echo "$(timestamp) Waiting for guru-shifu to start up.... "
+  echo "$(timestamp) Waiting for guru-shifu to start up.... " >> initializationlog.txt
   until $(curl --output /dev/null --silent --head --fail http://localhost:8080/rectangle/feedback-history/); do
-    printf "."
+    printf "."  >> initializationlog.txt
     sleep 1
   done
-  echo ""
   until $(curl --output /dev/null --silent --head --fail http://localhost:3000/); do
-    printf "*"
+    printf "*" >> initializationlog.txt
     sleep 1
   done
   echo ""
-  echo "$(timestamp) Guru-shifu started successfully..."
+  echo "$(timestamp) Guru-shifu started successfully..."  >> initializationlog.txt
 fi
 cd /workspace

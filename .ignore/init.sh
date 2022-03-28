@@ -7,6 +7,7 @@ timestamp(){
 echo "$(timestamp) Locating required resources..."
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $DIR
+touch initializationlog.txt
 
 IDTOKEN=null
 GATEWAY_ENDPOINT=null
@@ -17,20 +18,19 @@ HEADER2='Content-Type: application/x-amz-json-1.1'
 
 if [ $STAGE == "prod" ]
 then
-    echo "$(timestamp) Using Prod Artifact..."
+    echo "$(timestamp) Using Prod Artifact..." >> initializationlog.txt
     GATEWAY_ENDPOINT='https://slygfw4sw7.execute-api.ap-south-1.amazonaws.com/Prod/get-signed-url'
     CLIENT_ID=7r012t0noqgjoaarjuc1u21v85
 elif [ $STAGE == "test" ]
 then
-    echo "$(timestamp) Using Test Artifact..."
+    echo "$(timestamp) Using Test Artifact..." >> initializationlog.txt
     GATEWAY_ENDPOINT='https://ivcgd3sjsk.execute-api.ap-south-1.amazonaws.com/Prod/get-signed-url'
     CLIENT_ID=5jrqkesh41t56ragneqln5ilkl
 else
-    echo "$(timestamp) Using Dev Artifact..."
+    echo "$(timestamp) Using Dev Artifact..." >> initializationlog.txt
     GATEWAY_ENDPOINT='https://piqcbc19ya.execute-api.ap-south-1.amazonaws.com/Prod/get-signed-url'
     CLIENT_ID=233o8b28j9k1423sh0vgujvn3c
 fi
-
 
 getIdToken() {
   read -p "Enter your email : " USER_NAME
@@ -52,7 +52,7 @@ done
 
 echo -e "\e[1;32m------------User Authenticated...--------------------\e[0m"
 echo ""
-echo "Setting up guru shifu. This may take around 5 minutes..."
+
 IDTOKEN=$(cat response.txt | jq -r .AuthenticationResult.IdToken)
 
 HTTP_RESPONSE=$(curl -s -o signedurl.txt -w "%{http_code}" -H "Authorization: $IDTOKEN" $GATEWAY_ENDPOINT)
@@ -68,25 +68,25 @@ ARTIFACT_URL=$(cat signedurl.txt)
 rm response.txt
 rm signedurl.txt
 
-echo "Artifact url obtained....."
+echo "Artifact url obtained....." >> initializationlog.txt 
 echo ""
 echo -e "\e[1;34m $(timestamp) --------- Downloading the artifacts ... --------------\e[0m"
 curl  --output guru-shifu.tar.gz "$ARTIFACT_URL"
-echo "$(timestamp) Artifact download complete."
+echo "$(timestamp) Artifact download complete." >> initializationlog.txt
+echo ""
+echo "Setting up guru shifu. This may take around 5 minutes...."
 
-
-echo "$(timestamp) Unzipping guru-shifu tarball..."
+echo "$(timestamp) Unzipping guru-shifu tarball..." >> initializationlog.txt
 tar -xf guru-shifu.tar.gz
-echo "$(timestamp) Unzip complete"
+echo "$(timestamp) Unzip complete" >> initializationlog.txt
 
-echo "Docker build for fly way migrate" 
+echo "Docker build for fly way migrate"  >> initializationlog.txt
 docker build -q -t guru-shifu-db-migrations -f Dockerfile-flyway .
-echo "docker flyway build done..."
+echo "docker flyway build done..." >> initializationlog.txt
 
-echo "Env variables from build..."
 source guru-shifu-env-variables.txt 
 
-echo "Building the backend image..."
+echo "Building the backend image..." >> initializationlog.txt
 docker build -q -t  guru-shifu-api \
   --build-arg REMOTE_URL=$REMOTE_URL \
   --build-arg ENABLE_JAR_REQUIREMENT=$ENABLE_JAR_REQUIREMENT \
@@ -96,9 +96,9 @@ docker build -q -t  guru-shifu-api \
   --build-arg HOME_DIR=$HOME_DIR \
   --build-arg GURU_SHIFU_VERSION=$GURU_SHIFU_VERSION -f Dockerfile-api .
 
-echo "Backend image done"
+echo "Backend image done" >> initializationlog.txt
 
-echo "Building the frontend image...."
+echo "Building the frontend image...." >> initializationlog.txt
 docker build -q -t guru-shifu-ui \
   --build-arg GURU_SHIFU_VERSION=$GURU_SHIFU_VERSION \
   --build-arg ENABLE_JAR_REQUIREMENT=$ENABLE_JAR_REQUIREMENT \
@@ -106,7 +106,7 @@ docker build -q -t guru-shifu-ui \
   --build-arg ENABLE_SIGNUP_FLOW=$ENABLE_SIGNUP_FLOW \
   --build-arg TARGET_ENV=${TARGET_ENV:="local"} -f Dockerfile-ui .
 
-echo "Frontend Image done"
+echo "Frontend Image done" >> initializationlog.txt
 
 rm -R ui/
 rm -R migration/
