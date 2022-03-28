@@ -4,8 +4,9 @@
 .ignore/docker-compose.yml
 .ignore/*.txt
 .ignore/ui/*
-.ignore/migraion/*
+.ignore/migration/*
 .ignore/Docker*
 .ignore/go.sh
+.ignore/*.jar
 .idea/
 m2-repository/

@@ -3,11 +3,11 @@
 timestamp(){
     date
 }
+touch initializationlog.txt
 
-echo "$(timestamp) Locating required resources..."
+echo "$(timestamp) Locating required resources..." >> initializationlog.txt
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $DIR
-touch initializationlog.txt
 
 IDTOKEN=null
 GATEWAY_ENDPOINT=null
@@ -16,12 +16,12 @@ HTTP_RESPONSE=null
 HEADER1='X-Amz-Target: AWSCognitoIdentityProviderService.InitiateAuth'
 HEADER2='Content-Type: application/x-amz-json-1.1'
 
-if [ $STAGE == "prod" ]
+if [ $STAGE = "prod" ]
 then
     echo "$(timestamp) Using Prod Artifact..." >> initializationlog.txt
     GATEWAY_ENDPOINT='https://slygfw4sw7.execute-api.ap-south-1.amazonaws.com/Prod/get-signed-url'
     CLIENT_ID=7r012t0noqgjoaarjuc1u21v85
-elif [ $STAGE == "test" ]
+elif [ $STAGE = "test" ]
 then
     echo "$(timestamp) Using Test Artifact..." >> initializationlog.txt
     GATEWAY_ENDPOINT='https://ivcgd3sjsk.execute-api.ap-south-1.amazonaws.com/Prod/get-signed-url'
