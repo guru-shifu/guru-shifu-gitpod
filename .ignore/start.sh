@@ -6,13 +6,17 @@ timestamp(){
 printf '<settings>\n  <localRepository>/workspace/guru-shifu-gitpod/m2-repository/</localRepository>\n</settings>\n' > /home/gitpod/.m2/settings.xml
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $DIR
+
+echo "installing serve" >> initializationlog.txt
+npm install -g serve >> initializationlog.txt
+
 touch .env
 echo "REACT_APP_HOST_URL=https://8080-${GITPOD_WORKSPACE_URL#*//}" > .env
 echo "$(timestamp) Running docker-compose up in detach mode.." >> initializationlog.txt
 docker-compose -f docker-compose-gitpod.yml up -d --quiet-pull
 echo "$(timestamp) Docker compose completed." >> initializationlog.txt
 
-echo "Replace backend url env variable"
+echo "Replace backend url env variable" >> initializationlog.txt
 source .env
 source host-url.txt
 sed -i "s|$LOCAL_HOST_URL|$REACT_APP_HOST_URL|g" ./build/static/js/main.*.js

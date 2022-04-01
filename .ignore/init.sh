@@ -11,9 +11,6 @@ touch initializationlog.txt
 touch host-url.txt
 echo "export LOCAL_HOST_URL=http://localhost:8080" >> host-url.txt
 
-echo "installing serve" >> initializationlog.txt
-npm install -g serve
-
 echo "$(timestamp) Locating required resources..." >> initializationlog.txt
 
 IDTOKEN=null
