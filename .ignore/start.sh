@@ -7,9 +7,6 @@ printf '<settings>\n  <localRepository>/workspace/guru-shifu-gitpod/m2-repositor
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $DIR
 
-echo "installing serve" >> initializationlog.txt
-npm install -g serve >> initializationlog.txt
-
 touch .env
 echo "REACT_APP_HOST_URL=https://8080-${GITPOD_WORKSPACE_URL#*//}" > .env
 echo "$(timestamp) Running docker-compose up in detach mode.." >> initializationlog.txt
