@@ -40,18 +40,7 @@ services:
       WAIT_HOSTS: mysql:3306
       DB_HOST: "guru-shifu-db"
     depends_on:
-      - guru-shifu-db      
-
-  guru-shifu-client: 
-    image: guru-shifu-ui:latest
-    restart: on-failure
-    env_file: 
-      - .env
-    ports: 
-      - 3000:3000
-    depends_on: 
-      - guru-shifu-app
-    stdin_open: true
+      - guru-shifu-db
 
 volumes:
   db-data:

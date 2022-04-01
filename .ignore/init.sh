@@ -8,6 +8,11 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $DIR
 
 touch initializationlog.txt
+touch host-url.txt
+echo "export LOCAL_HOST_URL=http://localhost:8080" >> host-url.txt
+
+echo "installing serve" >> initializationlog.txt
+npm install -g serve
 
 echo "$(timestamp) Locating required resources..." >> initializationlog.txt
 
@@ -99,17 +104,6 @@ docker build -t  guru-shifu-api \
 
 echo "Backend image done" >> initializationlog.txt
 
-echo "Building the frontend image...." >> initializationlog.txt
-docker build -t guru-shifu-ui \
-  --build-arg GURU_SHIFU_VERSION=$GURU_SHIFU_VERSION \
-  --build-arg ENABLE_JAR_REQUIREMENT=$ENABLE_JAR_REQUIREMENT \
-  --build-arg CLIENT_ID=$CLIENT_ID --build-arg REMOTE_BATCHLIST_URL=$REMOTE_URL \
-  --build-arg ENABLE_SIGNUP_FLOW=$ENABLE_SIGNUP_FLOW \
-  --build-arg TARGET_ENV=${TARGET_ENV:="local"} -f Dockerfile-ui . >> initializationlog.txt
-
-echo "Frontend Image done" >> initializationlog.txt
-
-rm -R ui/
 rm -R migration/
 rm Dockerfile-api Dockerfile-ui Dockerfile-flyway 
 rm guru-shifu-env-variables.txt guru-shifu.tar.gz  guru-shifu-boot-0.0.1-SNAPSHOT.jar
