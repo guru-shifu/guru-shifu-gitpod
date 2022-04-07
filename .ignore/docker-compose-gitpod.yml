@@ -27,22 +27,5 @@ services:
       timeout: 20s
       retries: 10
 
-  # guru-shifu-app:
-  #   image: guru-shifu-api:latest
-  #   restart: on-failure
-  #   env_file: 
-  #     - .env
-  #   ports:
-  #     - 8080:8080    
-  #   volumes:
-  #     - /workspace/guru-shifu-log/:/project/api/logs
-  #     - /workspace/guru-shifu-gitpod/:/home/gitpod/guru-shifu
-  #     - /workspace/guru-shifu-gitpod/m2-repository/:/home/gitpod/.m2/repository
-  #   environment:
-  #     WAIT_HOSTS: mysql:3306
-  #     DB_HOST: "guru-shifu-db"
-  #   depends_on:
-  #     - guru-shifu-db
-
 volumes:
   db-data:

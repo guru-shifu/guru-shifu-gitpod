@@ -87,21 +87,9 @@ echo "Docker build for fly way migrate"  >> initializationlog.txt
 docker build -t guru-shifu-db-migrations -f Dockerfile-flyway . >> initializationlog.txt
 echo "docker flyway build done..." >> initializationlog.txt
 
-# echo "Building the backend image..." >> initializationlog.txt
-# docker build -t  guru-shifu-api \
-#   --build-arg REMOTE_URL=$REMOTE_URL \
-#   --build-arg ENABLE_JAR_REQUIREMENT=$ENABLE_JAR_REQUIREMENT \
-#   --build-arg REMOTE_USERPOOL_URL=$REMOTE_USERPOOL_URL \
-#   --build-arg USER_ID=$USER_ID \
-#   --build-arg USER_NAME=$USER_NAME \
-#   --build-arg HOME_DIR=$HOME_DIR \
-#   --build-arg GURU_SHIFU_VERSION=$GURU_SHIFU_VERSION -f Dockerfile-api . >> initializationlog.txt
-
-# echo "Backend image done" >> initializationlog.txt
-
 rm -R migration/
 rm Dockerfile-api Dockerfile-ui Dockerfile-flyway 
-# rm guru-shifu-env-variables.txt guru-shifu.tar.gz  guru-shifu-boot-0.0.1-SNAPSHOT.jar
+rm guru-shifu.tar.gz  
 
 mkdir /workspace/guru-shifu-gitpod/m2-repository
 printf '<settings>\n  <localRepository>/workspace/guru-shifu-gitpod/m2-repository/</localRepository>\n</settings>\n' > /home/gitpod/.m2/settings.xml
