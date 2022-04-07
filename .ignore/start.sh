@@ -7,8 +7,8 @@ printf '<settings>\n  <localRepository>/workspace/guru-shifu-gitpod/m2-repositor
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $DIR
 
-echo "installing serve" >> initializationlog.txt
-npm install -g serve >> initializationlog.txt
+source guru-shifu-env-variables.txt 
+export HOME=/workspace/guru-shifu-gitpod/
 
 touch .env
 echo "REACT_APP_HOST_URL=https://8080-${GITPOD_WORKSPACE_URL#*//}" > .env
@@ -21,6 +21,10 @@ source .env
 source host-url.txt
 sed -i "s|$LOCAL_HOST_URL|$REACT_APP_HOST_URL|g" ./build/static/js/main.*.js
 echo "export LOCAL_HOST_URL=$REACT_APP_HOST_URL" > host-url.txt
+
+echo "Starting GuruShifu backend..." >> initializationlog.txt
+
+nohup java -jar guru-shifu-boot-0.0.1-SNAPSHOT.jar &> springlog.txt &
 
 if [ $? == 0 ]
 then
