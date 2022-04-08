@@ -90,7 +90,7 @@ docker build -t guru-shifu-db-migrations -f Dockerfile-flyway . >> initializatio
 echo "docker flyway build done..." >> initializationlog.txt
 
 rm -R migration/
-rm Dockerfile-api Dockerfile-ui Dockerfile-flyway 
+rm Dockerfile-flyway 
 rm guru-shifu.tar.gz  
 
 mkdir /workspace/guru-shifu-gitpod/m2-repository
