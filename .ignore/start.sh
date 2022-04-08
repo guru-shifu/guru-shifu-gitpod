@@ -20,7 +20,6 @@ until [ $STARTED == 0 ];
 do
 docker ps -a --filter "exited=0" | grep "guru-shifu-db-migrations" >> sqllogs.txt
 STARTED=$?
-echo $STARTED
 sleep 1
 done
 
@@ -48,5 +47,5 @@ then
 fi
 echo "$(timestamp) GuruShifu frontend starting"  >> initializationlog.txt
 nohup bash -c "serve -s build 2>&1 &" && sleep 4
-
+echo "$(timestamp) ending of initilzation" >> timecheck.txt
 cd /workspace

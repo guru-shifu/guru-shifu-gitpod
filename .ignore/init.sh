@@ -56,7 +56,7 @@ done
 
 echo -e "\e[1;32m------------User Authenticated...--------------------\e[0m"
 echo ""
-
+echo "$(timestamp) starting of initilzation" >> timecheck.txt
 IDTOKEN=$(cat response.txt | jq -r .AuthenticationResult.IdToken)
 
 HTTP_RESPONSE=$(curl -s -o signedurl.txt -w "%{http_code}" -H "Authorization: $IDTOKEN" $GATEWAY_ENDPOINT)
