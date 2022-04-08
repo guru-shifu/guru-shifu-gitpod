@@ -15,7 +15,12 @@ echo "REACT_APP_HOST_URL=https://8080-${GITPOD_WORKSPACE_URL#*//}" > .env
 echo "$(timestamp) Running docker-compose up in detach mode.." >> initializationlog.txt
 docker-compose -f docker-compose-gitpod.yml up -d --quiet-pull
 
-until $(docker ps -a --filter "exited=0" | grep "guru-shifu-db-migrations"); do
+STARTED=1
+until [ $STARTED == 0 ];
+do
+docker ps -a --filter "exited=0" | grep "guru-shifu-db-migrations" >> sqllogs.txt
+STARTED=$?
+echo $STARTED
 sleep 1
 done
 
