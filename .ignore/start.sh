@@ -14,6 +14,7 @@ touch .env
 echo "REACT_APP_HOST_URL=https://8080-${GITPOD_WORKSPACE_URL#*//}" > .env
 echo "$(timestamp) Running docker-compose up in detach mode.." >> initializationlog.txt
 docker-compose -f docker-compose-gitpod.yml up -d --quiet-pull
+sleep 10
 echo "$(timestamp) Docker compose completed." >> initializationlog.txt
 
 echo "Replace backend url env variable" >> initializationlog.txt
