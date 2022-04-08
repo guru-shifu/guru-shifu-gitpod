@@ -13,6 +13,9 @@ ports:
   - port: 8080
     onOpen: ignore
     visibility: public
+  - port: 3306
+    onOpen: ignore
+    visibility: private
 
 vscode:
   extensions:

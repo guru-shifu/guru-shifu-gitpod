@@ -6,8 +6,8 @@ timestamp(){
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $DIR
-nohup docker pull mysql &
-nohup docker pull flyway/flyway &
+nohup docker pull mysql &> dockerpull.txt &
+nohup docker pull flyway/flyway &> dockerpull.txt &
 
 touch initializationlog.txt
 touch host-url.txt
