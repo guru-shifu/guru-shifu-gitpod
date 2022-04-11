@@ -1,0 +1,29 @@
+{
+    "explorer.compactFolders": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "*.*":true,
+        "**/m2-repository":true
+    },
+    "java.project.importOnFirstTimeStartup": "automatic",
+    "java.server.launchMode": "Standard",
+    "java.completion.favoriteStaticMembers": [
+        "org.junit.Assert.*",
+        "org.hamcrest.MatcherAssert.assertThat",
+        "org.hamcrest.Matchers.is",
+        "org.hamcrest.Matchers.equalTo",
+        "org.junit.Assume.*",
+        "org.junit.jupiter.api.Assertions.*",
+        "org.junit.jupiter.api.Assumptions.*",
+        "org.junit.jupiter.api.DynamicContainer.*",
+        "org.junit.jupiter.api.DynamicTest.*",
+        "org.mockito.Mockito.*",
+        "org.mockito.ArgumentMatchers.*",
+        "org.mockito.Answers.*"
+    ],
+    "extensions.ignoreRecommendations" : true
+}
