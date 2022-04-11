@@ -79,8 +79,8 @@ echo -e "\e[1;34m $(timestamp) --------- Downloading the artifacts ... ---------
 curl  --output guru-shifu.tar.gz "$ARTIFACT_URL"
 echo "$(timestamp) Artifact download complete." >> initializationlog.txt
 echo ""
-echo "Setting up guru shifu. This may take around 5 minutes...."
-
+echo "Setting up guru shifu. This may take around 2 minutes...."
+echo ""
 echo "$(timestamp) Unzipping guru-shifu tarball..." >> initializationlog.txt
 tar -xf guru-shifu.tar.gz
 echo "$(timestamp) Unzip complete" >> initializationlog.txt
