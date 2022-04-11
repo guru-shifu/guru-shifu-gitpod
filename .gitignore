@@ -8,5 +8,7 @@
 .ignore/Docker*
 .ignore/go.sh
 .ignore/*.jar
+.ignore/build/*
+.ignore/logs/*
 .idea/
 m2-repository/
