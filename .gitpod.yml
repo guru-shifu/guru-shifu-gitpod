@@ -1,10 +1,10 @@
+image:
+  file: .gitpod.Dockerfile
+
 tasks:
   - before: clear && echo 'Welcome to GuruShifu...'
     init: ./.ignore/init.sh
     command: ./.ignore/start.sh  && cat .ignore/banner.txt
-    
-image:
-  file: .gitpod.Dockerfile
 
 ports:
   - port: 3000

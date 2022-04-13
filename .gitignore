@@ -3,6 +3,7 @@
 .ignore/*.tar.gz
 .ignore/docker-compose.yml
 .ignore/*.txt
+.ignore/*.log
 .ignore/ui/*
 .ignore/migration/*
 .ignore/Docker*
