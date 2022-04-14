@@ -3,7 +3,7 @@
 timestamp(){
     date
 }
-printf '<settings>\n  <localRepository>/workspace/guru-shifu-gitpod/m2-repository/</localRepository>\n</settings>\n' > /home/gitpod/.m2/settings.xml
+printf '<settings>\n  <localRepository>/workspace/guru-shifu-gitpod/.m2/repository/</localRepository>\n</settings>\n' > /home/gitpod/.m2/settings.xml
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $DIR
 
