@@ -93,4 +93,4 @@ rm Dockerfile-flyway
 rm guru-shifu.tar.gz  
 
 mkdir /workspace/guru-shifu-gitpod/m2-repository
-printf '<settings>\n  <localRepository>/workspace/guru-shifu-gitpod/m2-repository/</localRepository>\n</settings>\n' > /home/gitpod/.m2/settings.xml
+printf '<settings>\n  <localRepository>/workspace/guru-shifu-gitpod/.m2/repository/</localRepository>\n</settings>\n' > /home/gitpod/.m2/settings.xml
