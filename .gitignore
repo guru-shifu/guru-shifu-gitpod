@@ -2,7 +2,14 @@
 .ignore/.env
 .ignore/*.tar.gz
 .ignore/docker-compose.yml
-.ignore/log.txt
+.ignore/*.txt
+.ignore/*.log
+.ignore/ui/*
+.ignore/migration/*
+.ignore/Docker*
 .ignore/go.sh
+.ignore/*.jar
+.ignore/build/*
+.ignore/logs/*
 .idea/
 m2-repository/

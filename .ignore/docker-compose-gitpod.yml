@@ -17,6 +17,8 @@ services:
       - MYSQL_PASSWORD=password
       - MYSQL_DATABASE=guru_shifu_db
       - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - 3306:3306
     volumes: 
       - "db-data:/var/lib/mysql"
     healthcheck:
@@ -24,34 +26,6 @@ services:
       interval: 2s
       timeout: 20s
       retries: 10
-
-  guru-shifu-app:
-    image: guru-shifu-api:latest
-    restart: on-failure
-    env_file: 
-      - .env
-    ports:
-      - 8080:8080    
-    volumes:
-      - /workspace/guru-shifu-log/:/project/api/logs
-      - /workspace/guru-shifu-gitpod/:/home/gitpod/guru-shifu
-      - /workspace/guru-shifu-gitpod/m2-repository/:/home/gitpod/.m2/repository
-    environment:
-      WAIT_HOSTS: mysql:3306
-      DB_HOST: "guru-shifu-db"
-    depends_on:
-      - guru-shifu-db      
-
-  guru-shifu-client: 
-    image: guru-shifu-ui:latest
-    restart: on-failure
-    env_file: 
-      - .env
-    ports: 
-      - 3000:3000
-    depends_on: 
-      - guru-shifu-app
-    stdin_open: true
 
 volumes:
   db-data:

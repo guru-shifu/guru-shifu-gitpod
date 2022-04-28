@@ -1,15 +1,20 @@
+image:
+  file: .gitpod.Dockerfile
+
 tasks:
   - before: clear && echo 'Welcome to GuruShifu...'
     init: ./.ignore/init.sh
-    command: ./.ignore/start.sh  >> .ignore/log.txt && cat .ignore/banner.txt
+    command: ./.ignore/start.sh  && cat .ignore/banner.txt
 
 ports:
   - port: 3000
-    onOpen: notify
-    visibility: public
+    onOpen: ignore
   - port: 8080
     onOpen: ignore
     visibility: public
+  - port: 3306
+    onOpen: ignore
+    visibility: private
 
 vscode:
   extensions:

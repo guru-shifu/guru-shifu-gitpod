@@ -12,7 +12,6 @@
     "java.project.importOnFirstTimeStartup": "automatic",
     "java.server.launchMode": "Standard",
     "java.completion.favoriteStaticMembers": [
-
         "org.junit.Assert.*",
         "org.hamcrest.MatcherAssert.assertThat",
         "org.hamcrest.Matchers.is",
