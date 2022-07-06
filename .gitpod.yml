@@ -2,7 +2,7 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - before: clear && echo 'Welcome to GuruShifu...'
+  - before: clear && echo 'export GIT_EDITOR=$(command -v vim)' >> $HOME/.bashrc && echo 'Welcome to GuruShifu...'
     init: ./.ignore/init.sh
     command: ./.ignore/start.sh  && cat .ignore/banner.txt
     env:
