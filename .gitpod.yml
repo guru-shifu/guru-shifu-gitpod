@@ -2,8 +2,8 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - before: ./.ignore/env.sh && clear && echo 'Welcome to GuruShifu...'
-    init: ./.ignore/init.sh
+  - before: clear && echo 'Welcome to GuruShifu...'
+    init: ./.ignore/env.sh &&  ./.ignore/init.sh
     command: ./.ignore/start.sh  && cat .ignore/banner.txt
 
 ports:
