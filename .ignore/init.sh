@@ -4,8 +4,6 @@ timestamp(){
     date
 }
 
-echo 'export GIT_EDITOR=$(command -v vim)' >> $HOME/.bashrc
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 cd $DIR
 nohup docker pull mysql &> dockerpull.log &
