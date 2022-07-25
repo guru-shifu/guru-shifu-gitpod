@@ -38,7 +38,7 @@ nohup java -jar guru-shifu-boot-0.0.1-SNAPSHOT.jar &> springlog.log &
 if [ $? == 0 ]
 then
   echo "$(timestamp) Waiting for guru-shifu to start up.... " >> initializationlog.log
-  until $(curl --output /dev/null --silent --head --fail http://localhost:8080/rectangle/feedback-history/); do
+  until $(curl -X OPTIONS --output /dev/null --silent --head --fail http://localhost:8080/rectangle/feedback-history/); do
     printf "."  >> initializationlog.log
     sleep 1
   done
