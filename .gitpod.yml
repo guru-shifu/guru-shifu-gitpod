@@ -18,7 +18,7 @@ ports:
 
 vscode:
   extensions:
-    - redhat.java@1.7.0
     - k--kato.intellij-idea-keybindings
     - vscjava.vscode-java-test
     - vscjava.vscode-java-debug
+    - https://github.com/redhat-developer/vscode-java/releases/download/v1.7.0/java-1.7.0.vsix
