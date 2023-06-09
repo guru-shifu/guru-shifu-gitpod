@@ -4,7 +4,7 @@ image:
 tasks:
   - before: clear && echo 'Welcome to GuruShifu...'
     init: ./.ignore/init.sh
-    command: ./.ignore/start.sh  && cat .ignore/banner.txt
+    command: ./.ignore/start.sh && cat .ignore/banner.txt
 
 ports:
   - port: 3000
@@ -18,7 +18,7 @@ ports:
 
 vscode:
   extensions:
+    - redhat.java
     - k--kato.intellij-idea-keybindings
     - vscjava.vscode-java-test
     - vscjava.vscode-java-debug
-    - https://github.com/redhat-developer/vscode-java/releases/download/v1.7.0/java-1.7.0.vsix
