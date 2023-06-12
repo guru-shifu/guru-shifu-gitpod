@@ -19,3 +19,4 @@ ports:
 vscode:
   extensions:
     - k--kato.intellij-idea-keybindings
+    - redhat.java
